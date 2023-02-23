@@ -1,0 +1,8 @@
+FROM alpine
+
+RUN adduser -D somebody
+
+RUN apk update && apk add gcc make libc-dev gdb
+
+USER somebody
+WORKDIR /src
