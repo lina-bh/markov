@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 	}
 	int our_fd = -1;
 	if (argc > 2) {
-		our_fd = open(argv[2], O_RDWR | O_CREAT | O_TRUNC);
+		our_fd = open(argv[2], O_RDWR | O_CREAT | O_TRUNC, 0666);
 		if (our_fd < 0) {
 			perror(NULL);
 			abort();

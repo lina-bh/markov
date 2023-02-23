@@ -3,7 +3,7 @@
 
 #include "eprintf.h"
 
-#include <stdint.h>
+#include <inttypes.h>
 #include <stdlib.h>
 
 struct mmapped_file {
@@ -14,7 +14,7 @@ struct mmapped_file {
 
 static inline uint8_t mmapped_file_index(struct mmapped_file *mf, size_t idx) {
 	if (idx >= mf->file_len) {
-		eprintf("mmapped_file_index: invalid index %zu >= file_len %llu\n", idx, mf->file_len);
+		eprintf("mmapped_file_index: invalid index %zu >= file_len %" PRIu64 "d\n", idx, mf->file_len);
 		abort();
 	}
 	return (mf->map)[idx];
@@ -24,7 +24,7 @@ static inline uint8_t mmapped_file_index(struct mmapped_file *mf, size_t idx) {
 
 static inline uint8_t *mmapped_file_substring(struct mmapped_file *mf, size_t start, size_t end) {
 	if (mf->map + end >= mf->map + mf->file_len) {
-		eprintf("mmapped_file_substring: invalid end index %zu, file_len %llu\n", end, mf->file_len);
+		eprintf("mmapped_file_substring: invalid end index %zu, file_len %" PRIu64 "d\n", end, mf->file_len);
 		abort();
 	}
 	return &mf->map[start];
