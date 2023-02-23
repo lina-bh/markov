@@ -1,11 +1,3 @@
-#include "word_tbl.h"
-#include "assert_syscall.h"
-#include "eprintf.h"
-#include "get_page_size.h"
-#include "make_backing_file.h"
-#include "perrno.h"
-#include "round_up.h"
-
 #include <limits.h>
 #include <stdio.h>
 #include <string.h>
@@ -17,6 +9,14 @@
 #else
 #include <sys/errno.h>
 #endif
+
+#include "assert_syscall.h"
+#include "eprintf.h"
+#include "get_page_size.h"
+#include "make_backing_file.h"
+#include "perrno.h"
+#include "round_up.h"
+#include "word_tbl.h"
 
 static word_tbl_hash djb2hash(const uint8_t *data, size_t len) {
 	word_tbl_hash state = 5381;

@@ -1,9 +1,3 @@
-#include "mmapped_file.h"
-#include "assert_syscall.h"
-#include "eprintf.h"
-#include "get_page_size.h"
-#include "round_up.h"
-
 #include <string.h>
 #include <sys/mman.h>
 #include <unistd.h>
@@ -16,6 +10,11 @@
 #include <sys/errno.h>
 #include <sys/fcntl.h>
 #endif
+
+#include "assert_syscall.h"
+#include "get_page_size.h"
+#include "mmapped_file.h"
+#include "round_up.h"
 
 int mmapped_file_open(struct mmapped_file *mf, const char *path, int oflags) {
 	int mmap_flags = 0;
