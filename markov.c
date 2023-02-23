@@ -6,8 +6,8 @@
 #include <assert.h>
 #include <limits.h>
 #include <stdbool.h>
-#include <stdio.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <sys/resource.h>
 #include <unistd.h>
@@ -30,7 +30,7 @@ static bool skipchar(uint8_t c) {
 }
 
 static uint64_t random_u64(int urandom_fd) {
-	uint8_t buf[sizeof(uint64_t) / sizeof(uint8_t)] = {0};
+	uint8_t buf[sizeof(uint64_t) / sizeof(uint8_t)] = { 0 };
 	if (read(urandom_fd, buf, sizeof(buf)) != sizeof(buf)) {
 		eprintf("random_u64: can't read /dev/urandom\n");
 		abort();
@@ -131,7 +131,7 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	struct mmapped_file mf = {0};
+	struct mmapped_file mf = { 0 };
 	int retval = -1;
 	if ((retval = mmapped_file_open(&mf, path, O_RDONLY)) < 0) {
 		perrno(retval);
@@ -143,7 +143,7 @@ int main(int argc, char *argv[]) {
 		words += mfi(&mf, i) == ' ';
 	}
 
-	struct word_tbl tbl = {0};
+	struct word_tbl tbl = { 0 };
 	if ((retval = word_tbl_init(&tbl, words / 6, our_fd)) < 0) {
 		perrno(retval);
 		return 1;
@@ -160,7 +160,7 @@ int main(int argc, char *argv[]) {
 	do {
 		vomit(&mf, &tbl, urandom_fd);
 	} while (getc(stdin) != EOF);
-	
+
 	// word_tbl_destroy(&tbl);
 
 	puts("");

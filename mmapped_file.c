@@ -1,8 +1,8 @@
-#include "eprintf.h"
 #include "mmapped_file.h"
-#include "round_up.h"
-#include "get_page_size.h"
 #include "assert_syscall.h"
+#include "eprintf.h"
+#include "get_page_size.h"
+#include "round_up.h"
 
 #include <string.h>
 #include <sys/mman.h>
@@ -30,7 +30,7 @@ int mmapped_file_open(struct mmapped_file *mf, const char *path, int oflags) {
 	int fd = -1;
 	void *mem = NULL;
 	size_t mmap_len = 0;
-	
+
 	fd = open(path, oflags);
 	if (fd < 0) {
 		goto err;

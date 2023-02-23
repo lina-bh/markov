@@ -1,3 +1,4 @@
 a.out*
 corpus3
 *data
+.clang-format
